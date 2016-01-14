@@ -57,52 +57,24 @@
 
 
 
-<meta name="description" content="前言
-我们写的代码要对得起自己。
-在这里分享一些h5项目开发和设计的技巧，希望对大家有帮助。知识点没有太深入，偏重于设计大的结构。有问题可以直接google。
-汇海期待您的加入！
-兵器推荐
-idea（js 开发）
-
-fiddler（抓包）
-google chrome(debug 方便)
-apache（部署静态服务）
-switchHost（切换本地 host）
-
-基础优化公共js　　1. 不同的公司">
+<meta name="description" content="抓取网络请求包，快速定位bug，提高解决问题的能力">
 <meta property="og:type" content="article">
-<meta property="og:title" content="H5技术总结（Fiddler）">
-<meta property="og:url" content="http://huihaizhe.com/2016/01/08/h5 开发总结/index.html">
+<meta property="og:title" content="移动开发利剑之抓包工具（Fiddler）">
+<meta property="og:url" content="http://huihaizhe.com/2016/01/08/capture/index.html">
 <meta property="og:site_name" content="不积跬步无以至千里,不积小流无以成江河">
-<meta property="og:description" content="前言
-我们写的代码要对得起自己。
-在这里分享一些h5项目开发和设计的技巧，希望对大家有帮助。知识点没有太深入，偏重于设计大的结构。有问题可以直接google。
-汇海期待您的加入！
-兵器推荐
-idea（js 开发）
-
-fiddler（抓包）
-google chrome(debug 方便)
-apache（部署静态服务）
-switchHost（切换本地 host）
-
-基础优化公共js　　1. 不同的公司">
-<meta property="og:updated_time" content="2016-01-14T02:42:52.562Z">
+<meta property="og:description" content="抓取网络请求包，快速定位bug，提高解决问题的能力">
+<meta property="og:image" content="http://i.imgur.com/Xj0akYq.png">
+<meta property="og:image" content="http://i.imgur.com/meiFObw.png">
+<meta property="og:image" content="http://i.imgur.com/5rGWhzH.png">
+<meta property="og:image" content="http://i.imgur.com/ZO6TFy8.png">
+<meta property="og:image" content="http://i.imgur.com/tG7BP6q.png">
+<meta property="og:image" content="http://i.imgur.com/VTwUKZj.png">
+<meta property="og:image" content="http://i.imgur.com/KVTeata.png">
+<meta property="og:image" content="http://i.imgur.com/fh2ygOK.png">
+<meta property="og:updated_time" content="2016-01-14T12:50:07.080Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="H5技术总结（Fiddler）">
-<meta name="twitter:description" content="前言
-我们写的代码要对得起自己。
-在这里分享一些h5项目开发和设计的技巧，希望对大家有帮助。知识点没有太深入，偏重于设计大的结构。有问题可以直接google。
-汇海期待您的加入！
-兵器推荐
-idea（js 开发）
-
-fiddler（抓包）
-google chrome(debug 方便)
-apache（部署静态服务）
-switchHost（切换本地 host）
-
-基础优化公共js　　1. 不同的公司">
+<meta name="twitter:title" content="移动开发利剑之抓包工具（Fiddler）">
+<meta name="twitter:description" content="抓取网络请求包，快速定位bug，提高解决问题的能力">
 
 
 
@@ -120,7 +92,7 @@ switchHost（切换本地 host）
   };
 </script>
 
-  <title> H5技术总结（Fiddler） | 不积跬步无以至千里,不积小流无以成江河 </title>
+  <title> 移动开发利剑之抓包工具（Fiddler） | 不积跬步无以至千里,不积小流无以成江河 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -147,7 +119,7 @@ switchHost（切换本地 host）
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,7 +219,7 @@ switchHost（切换本地 host）
   
   
 
-  <article class="post post-type-h5 " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-android " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -258,7 +230,7 @@ switchHost（切换本地 host）
             
             
               
-                H5技术总结（Fiddler）
+                移动开发利剑之抓包工具（Fiddler）
               
             
           </h1>
@@ -281,8 +253,8 @@ switchHost（切换本地 host）
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/08/h5 开发总结/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/08/h5 开发总结/" itemprop="commentsCount"></span>
+                <a href="/2016/01/08/capture/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/08/capture/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -303,169 +275,62 @@ switchHost（切换本地 host）
       
 
       
-        <h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><ul>
-<li>我们写的代码要对得起自己。<br></li>
-<li>在这里分享一些h5项目开发和设计的技巧，希望对大家有帮助。知识点没有太深入，偏重于设计大的结构。有问题可以直接google。<br></li>
-<li><p>汇海期待您的加入！</p>
-<h2 id="u5175_u5668_u63A8_u8350"><a href="#u5175_u5668_u63A8_u8350" class="headerlink" title="兵器推荐"></a>兵器推荐</h2></li>
-<li><p>idea（js 开发）</p>
-</li>
-<li>fiddler（抓包）</li>
-<li>google chrome(debug 方便)</li>
-<li>apache（部署静态服务）</li>
-<li>switchHost（切换本地 host）</li>
+        <p>抓取网络请求包，快速定位bug，提高解决问题的能力</p>
+<a id="more"></a>
+<h2 id="u80CC_u666F"><a href="#u80CC_u666F" class="headerlink" title="背景"></a>背景</h2><blockquote>
+<ul>
+<li>开发人员在开发过程中，ide 控制台经常不能完整的打印出网络请求的数据；</li>
+<li>app应用上线后，如果调试bug，需要后端开发哥哥登录服务器的查看log日志;</li>
 </ul>
-<h2 id="u57FA_u7840_u4F18_u5316"><a href="#u57FA_u7840_u4F18_u5316" class="headerlink" title="基础优化"></a>基础优化</h2><h3 id="u516C_u5171js"><a href="#u516C_u5171js" class="headerlink" title="公共js"></a>公共js</h3><p>　　1. 不同的公司都有自己的公共类库，经常存在线上环境和至少一套线下环境，如果没有一个公共的开关来设置域名的切换，每次在上线的时候，如果逐个进行替换，会相当麻烦。<br><br>　　2. ajax 封装(略)</p>
-<pre><code>var HHZ_COMMON = {
-isDebug: true,
-//获取域名
-getHost: function () {
-    var result;
-    if (JD_COMMON.isDebug) {
-        result = &quot;http://test.huihaizhe.com/&quot;;//测试地址
-    } else {
-        result = &quot;http://huihaizhe.com/&quot;;//正式地址
-    }
-
-    return result;
-},
-//判断参数是否为null
-isEmpty: function (text) {
-    if (text == null || text == undefined || text == &quot;undefined&quot; || text === &quot;&quot;) {
-        return true;
-    } else {
-        return false;
-    }
-},
-//判断参数不为null
-isNotEmpty: function (text) {
-    return !this.isEmpty(text);
-},
-//获取URL参数函数
-getUrlParam: function (name) {
-    var reg = new RegExp(&quot;(^|&amp;)&quot; + name + &quot;=([^&amp;]*)(&amp;|$)&quot;);
-    var r = window.location.search.substr(1).match(reg);
-    if (r != null) {
-        r = decodeURIComponent(unescape(r[2]));
-        return this.stripscript(r);
-    } else {
-        return null;
-    }
-},
-stripscript: function (s) {
-    var pattern = new RegExp(&quot;[`~!@#$^&amp;*()=|{}&apos;;&apos;,\\[\\].&lt;&gt;/?~！@#￥……&amp;*（）—|{}【】‘；：”“&apos;。，、？]&quot;);
-    var rs = &quot;&quot;;
-    for (var i = 0; i &lt; s.length; i++) {
-        rs = rs + s.substr(i, 1).replace(pattern, &apos;&apos;);
-    }
-    return rs;
-},
-//对ajax的封装
-load: function (options) {
-    //定义默认值
-    this.defaultOpt = {
-        type: &apos;GET&apos;,
-        url: &quot;&quot;,//必传
-        data: {},//key-value
-        jsonpCallback: &apos;callback&apos;,
-        dataType: &apos;jsonp&apos;,//jsonp json
-        msgTitle: &quot;ajax 请求&quot;,//debug 时可以设置
-        cache: false,//默认值true, dataType是&apos;script&apos;或&apos;jsonp&apos;时为false，可根据需要配置
-        success: function (data) {
-        },
-        error: function (data) {
-        },
-    };
-    var opt = $.extend(this.defaultOpt, options);
-    /*对网络异常将来可以统一处理*/
-    $.ajax({
-        type: opt.type,
-        url: opt.url,
-        jsonpCallback: opt.jsonpCallback,
-        dataType: opt.dataType,
-        data: opt.data,
-        error: function (data) {
-            opt.error(data);
-        },
-        success: function (data) {
-            opt.success(data);
-        }
-    });
-},
-</code></pre><h3 id="h5_u9875_u9762_u7ED3_u6784"><a href="#h5_u9875_u9762_u7ED3_u6784" class="headerlink" title="h5页面结构"></a>h5页面结构</h3><ol>
-<li>head 标签内完成对公共js的引入</li>
-<li>h5页面底部完成对本页面js的引入</li>
-</ol>
-<p>注：如果受够了产品经常反复修改，请不要在h5页面内写入过多的js代码(尽量只写一行引入代码)</p>
-<h3 id="js__u4EE3_u7801_u7ED3_u6784"><a href="#js__u4EE3_u7801_u7ED3_u6784" class="headerlink" title="js 代码结构"></a>js 代码结构</h3><pre><code>&apos;/**
-     * 改页面唯一入口
- */
-var initConfig = {
-//api 接口
-zeusTestApi: &quot;item/v2/queryClass&quot;,//获取类目信息
-init: function () {
-    mytest.addClick();//注册所有点击事件
-    //添加更多模块
-},
-};
-/**
- *  1. addClick 所有的点击事件统一在这里进行绑定（不建议使用匿名类）&lt;br/&gt;
- *  2. reqApi()   定义函数 ..&lt;br/&gt;
- *  注： 每个函数只做一件事情，代码结构清晰
- */
-var mytest = {
-/*所有的点击事件入口*/
-addClick: function () {
-    //ajax 请求
-    $(&quot;.postAjax&quot;).unbind(&quot;click&quot;).on(&quot;click&quot;, mytest.reqApi());
-},
-reqApi: function () {//获取用户信息
-    HHZ_COMMON.load({
-        url: HHZ_COMMON.getHost() + initConfig.zeusTestApi,
-        type: &apos;get&apos;,
-        cache: false,
-        data: {
-            //请求参数
-        },
-        dataType: &apos;jsonp&apos;,
-        jsonpCallback: &apos;mytest&apos;,
-        success: function (res) {
-            alert(&quot;网络请求成功&quot;);
-        },
-        error: function (res) {
-            alert(&quot;网络请求失败&quot;);
-        }
-    });
-},
-reqApi2: function () {
-    //点击某某
-}
-}
-</code></pre><h2 id="u5E38_u89C1_u95EE_u9898"><a href="#u5E38_u89C1_u95EE_u9898" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="u5F00_u53D1_u524D_u53EF_u4EE5_u907F_u514D"><a href="#u5F00_u53D1_u524D_u53EF_u4EE5_u907F_u514D" class="headerlink" title="开发前可以避免"></a>开发前可以避免</h3><ul>
-<li><p>杜绝为了完成工作而工作，拿到重构稿是认真分析页面结构。</p>
-<ol>
-<li><p>提示框未展示问题<br><br>产生该问题的原因是,提示框已经弹出，但是被页面上其它的遮罩层挡住。<br><br>在获取到重构稿的时候，优先查看查看遮罩层的z-index属性值，如果未设置建议设置一个很大的值。</p>
-</li>
-<li><p>页面结构分析<br>①了解h5页面有多少给状态页面<br><br>②了解h5页面有多少个页面是全屏展示，多少个页面非全屏展示<br></p>
-</li>
-<li><p>可变高度和屏幕高度（可以解决大部分疑难问题）</p>
-</li>
-</ol>
-</li>
-</ul>
-<h3 id="u5F00_u53D1_u8FDB_u884C_u4E2D_u95EE_u9898"><a href="#u5F00_u53D1_u8FDB_u884C_u4E2D_u95EE_u9898" class="headerlink" title="开发进行中问题"></a>开发进行中问题</h3><p>　　1. h5页面唤起系统键盘切换不流畅问题<br><br>　　　产生该问题的原因是，iphone input和textarea 焦点失去时和系统键盘收起的响应时间问题。具体解决方法可以参考 <a href="http://www.alixixi.com/web/a/2014042893111.shtml" target="_blank" rel="external">ios键盘收起</a>。（增加了延迟完美解决）<br></p>
-<p>　　2. 冒泡问题<br><br>　　JQuery中阻止冒泡常用到的有以下3个方法：</p>
-<blockquote>
-<p>  ①event.stopPropagation();  只阻止了冒泡事件， 默认行为没有阻止<br><br>  ②event.preventDefault(); 只阻止了默认事件，冒泡事件没有阻止<br><br>   ③return false; 冒泡事件和默认事件都阻止<br></p>
 </blockquote>
-<p>终结解决方法（以上方法无法解决时）：<br>   debug 调试，对event的类名进行对比，执行对应逻辑</p>
-<p>产生以上问题的原因是，该区域内绑定的事件太多，一般超过3个事件。</p>
-<h2 id="debug__u6280_u5DE7"><a href="#debug__u6280_u5DE7" class="headerlink" title="debug 技巧"></a>debug 技巧</h2><h3 id="u7075_u6D3B_u4F7F_u7528_u63A7_u5236_u53F0"><a href="#u7075_u6D3B_u4F7F_u7528_u63A7_u5236_u53F0" class="headerlink" title="灵活使用控制台"></a>灵活使用控制台</h3><h2 id="u63A8_u8350_u9605_u8BFB"><a href="#u63A8_u8350_u9605_u8BFB" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><ul>
-<li><a href="http://www.haorooms.com/post/jquery_dmgf_zjsj" target="_blank" rel="external">JQUERY 开发规范</a></li>
-<li><a href="http://kb.cnblogs.com/page/130367/" target="_blank" rel="external">Fiddler 教程</a></li>
-<li><a href="http://www.youmeek.com/" target="_blank" rel="external">idea 使用教程</a></li>
+<h2 id="u6293_u5305_u4E4B_u8DEF"><a href="#u6293_u5305_u4E4B_u8DEF" class="headerlink" title="抓包之路"></a>抓包之路</h2><h3 id="Fiddler_u914D_u7F6E"><a href="#Fiddler_u914D_u7F6E" class="headerlink" title="Fiddler配置"></a>Fiddler配置</h3><blockquote>
+<ol>
+<li>安装Fiddler软件</li>
+<li>点击: Tools -&gt; Options,  在Options 对话框上点击Advanced tab - &gt; network tab -&gt; setting.如下图:<br><br><img src="http://i.imgur.com/Xj0akYq.png" alt=""><br></li>
+<li>代理端配置（不建议修改）。fiddler默认端口为8888，地址为127.0.0.1。为了省事不建议修改。如下图:<br><br><img src="http://i.imgur.com/meiFObw.png" alt=""></li>
+</ol>
+</blockquote>
+<h3 id="u521B_u5EFA_u70ED_u70B9"><a href="#u521B_u5EFA_u70ED_u70B9" class="headerlink" title="创建热点"></a>创建热点</h3><h4 id="360_u514D_u8D39_u70ED_u70B9"><a href="#360_u514D_u8D39_u70ED_u70B9" class="headerlink" title="360免费热点"></a>360免费热点</h4><blockquote>
+<ol>
+<li>在360安全卫士中安装360免费wifi  </li>
+<li>运行360免费wifi，并设置对应的密码，如下图:<br><br><img src="http://i.imgur.com/5rGWhzH.png" alt=""></li>
+</ol>
+</blockquote>
+<hr>
+<blockquote>
+<p>说明<br><br>场景1 公司无线网络环境<br><br>　　　由于公司无线网络环境会链接很多个终端设备，自己创建的热点网速会有影响(不建议)<br><br>场景2 公司有线网络<br><br>　　　公司有线网络获一般直接和交换机连接，网速给力，自己再抓包过程中也会得新应手(推荐)<br>  </p>
+</blockquote>
+<h3 id="u624B_u673A_u7AEF_u914D_u7F6E"><a href="#u624B_u673A_u7AEF_u914D_u7F6E" class="headerlink" title="手机端配置"></a>手机端配置</h3><p>准备：</p>
+<blockquote>
+<ul>
+<li>搜索wifi，找到并连接上自己刚刚创建的热点，并测试是否连接成功</li>
+<li>产看本机ip地址<br><br>①共享本地无线网络，查看无线网卡ip<br><br>②共享本地有线网络，查看有线网卡ip<br><br>具体如下图：<br><br><img src="http://i.imgur.com/ZO6TFy8.png" alt=""><br><br><img src="http://i.imgur.com/tG7BP6q.png" alt=""><br>特别注意，一定要对应ip，否则会有问题  </li>
 </ul>
-<p>103.245.222.133</p>
+</blockquote>
+<h4 id="ios__u624B_u673A_u914D_u7F6E"><a href="#ios__u624B_u673A_u914D_u7F6E" class="headerlink" title="ios 手机配置"></a>ios 手机配置</h4><blockquote>
+<ol>
+<li>设置手机端的代理服务器（输入在第2部找到的ip地址，端口号位8888）<br><br><img src="http://i.imgur.com/VTwUKZj.png" alt="">  </li>
+<li>进入fiddler 查看是否可以抓取到手机应用上的流量包<br>  </li>
+</ol>
+</blockquote>
+<h4 id="android__u624B_u673A_u914D_u7F6E"><a href="#android__u624B_u673A_u914D_u7F6E" class="headerlink" title="android 手机配置"></a>android 手机配置</h4><p>注：android手机各异，只展示红米配置,其它手机终端百度可以搞定<br>  </p>
+<blockquote>
+<ol>
+<li>设置手机端的代理服务器（输入在第2部找到的ip地址，端口号位8888）<br><br><img src="http://i.imgur.com/KVTeata.png" alt="">  </li>
+<li>进入fiddler 查看是否可以抓取到手机应用上的流量包<br>  </li>
+</ol>
+<hr>
+<p>无法连接可能问题：<br><br>　　①fiddler 没有启动<br><br>　　②手机端端口号忘记配置<br><br>　　③ip地址填写错误<br><br>fiddler 抓取不到包:<br><br>　　①客户端没有配置代理，重新检查以上步骤<br>  </p>
+</blockquote>
+<h3 id="Fiddler__u67E5_u770B"><a href="#Fiddler__u67E5_u770B" class="headerlink" title="Fiddler 查看"></a>Fiddler 查看</h3><blockquote>
+<ol>
+<li>清空工作空间，操作客户端应用程序抓取应用包    </li>
+<li>数据解析<br><img src="http://i.imgur.com/fh2ygOK.png" alt=""><br><br>webforms　　查看请求提交的参数，以表单的形式展示，特别方便<br><br>JSON　　　 查看请求提交的参数，以表单的形式展示，特别方便<br>    </li>
+</ol>
+</blockquote>
+<h2 id="u6269_u5C55_u9605_u8BFB"><a href="#u6269_u5C55_u9605_u8BFB" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
+<li><a href="http://kb.cnblogs.com/page/130367/" target="_blank" rel="external">Fiddler 教程</a>  </li>
+</ul>
 
       
     </div>
@@ -481,8 +346,8 @@ reqApi2: function () {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/01/08/android 抓包/" rel="prev" title="移动开发利剑之抓包工具（Fiddler）">
-                移动开发利剑之抓包工具（Fiddler） <i class="fa fa-chevron-right"></i>
+              <a href="/2016/01/08/h5share/" rel="prev" title="H5技术总结（Fiddler）">
+                H5技术总结（Fiddler） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -509,8 +374,8 @@ reqApi2: function () {
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/08/h5 开发总结/"
-           data-title="H5技术总结（Fiddler）" data-url="http://huihaizhe.com/2016/01/08/h5 开发总结/">
+      <div class="ds-thread" data-thread-key="2016/01/08/capture/"
+           data-title="移动开发利剑之抓包工具（Fiddler）" data-url="http://huihaizhe.com/2016/01/08/capture/">
       </div>
     
   </div>
@@ -619,7 +484,7 @@ reqApi2: function () {
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u524D_u8A00"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5175_u5668_u63A8_u8350"><span class="nav-number">2.</span> <span class="nav-text">兵器推荐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u57FA_u7840_u4F18_u5316"><span class="nav-number">3.</span> <span class="nav-text">基础优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u516C_u5171js"><span class="nav-number">3.1.</span> <span class="nav-text">公共js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#h5_u9875_u9762_u7ED3_u6784"><span class="nav-number">3.2.</span> <span class="nav-text">h5页面结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js__u4EE3_u7801_u7ED3_u6784"><span class="nav-number">3.3.</span> <span class="nav-text">js 代码结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5E38_u89C1_u95EE_u9898"><span class="nav-number">4.</span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5F00_u53D1_u524D_u53EF_u4EE5_u907F_u514D"><span class="nav-number">4.1.</span> <span class="nav-text">开发前可以避免</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5F00_u53D1_u8FDB_u884C_u4E2D_u95EE_u9898"><span class="nav-number">4.2.</span> <span class="nav-text">开发进行中问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#debug__u6280_u5DE7"><span class="nav-number">5.</span> <span class="nav-text">debug 技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u7075_u6D3B_u4F7F_u7528_u63A7_u5236_u53F0"><span class="nav-number">5.1.</span> <span class="nav-text">灵活使用控制台</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u63A8_u8350_u9605_u8BFB"><span class="nav-number">6.</span> <span class="nav-text">推荐阅读</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u80CC_u666F"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u6293_u5305_u4E4B_u8DEF"><span class="nav-number">2.</span> <span class="nav-text">抓包之路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Fiddler_u914D_u7F6E"><span class="nav-number">2.1.</span> <span class="nav-text">Fiddler配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u521B_u5EFA_u70ED_u70B9"><span class="nav-number">2.2.</span> <span class="nav-text">创建热点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#360_u514D_u8D39_u70ED_u70B9"><span class="nav-number">2.2.1.</span> <span class="nav-text">360免费热点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u624B_u673A_u7AEF_u914D_u7F6E"><span class="nav-number">2.3.</span> <span class="nav-text">手机端配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ios__u624B_u673A_u914D_u7F6E"><span class="nav-number">2.3.1.</span> <span class="nav-text">ios 手机配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#android__u624B_u673A_u914D_u7F6E"><span class="nav-number">2.3.2.</span> <span class="nav-text">android 手机配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fiddler__u67E5_u770B"><span class="nav-number">2.4.</span> <span class="nav-text">Fiddler 查看</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u6269_u5C55_u9605_u8BFB"><span class="nav-number">3.</span> <span class="nav-text">扩展阅读</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -640,7 +505,7 @@ reqApi2: function () {
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy;  2016 -2026 - 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>

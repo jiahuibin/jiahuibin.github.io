@@ -110,7 +110,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
+  <div class="container one-collumn sidebar-position-right 
    page-home 
  ">
     <div class="headband"></div>
@@ -227,7 +227,7 @@
   
   
 
-  <article class="post post-type-android " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-h5 " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -239,8 +239,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/01/08/android 抓包/" itemprop="url">
-                  移动开发利剑之抓包工具（Fiddler）
+                <a class="post-title-link" href="/2016/01/08/h5share/" itemprop="url">
+                  H5技术总结（Fiddler）
                 </a>
               
             
@@ -264,8 +264,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/08/android 抓包/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/08/android 抓包/" itemprop="commentsCount"></span>
+                <a href="/2016/01/08/h5share/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/08/h5share/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -287,63 +287,12 @@
 
       
         
-          
-            <h1 id="u79FB_u52A8_u5F00_u53D1_u5229_u5251_u4E4B_u6293_u5305_u5DE5_u5177_uFF08Fiddler_uFF09"><a href="#u79FB_u52A8_u5F00_u53D1_u5229_u5251_u4E4B_u6293_u5305_u5DE5_u5177_uFF08Fiddler_uFF09" class="headerlink" title="移动开发利剑之抓包工具（Fiddler）"></a>移动开发利剑之抓包工具（Fiddler）</h1><h2 id="u80CC_u666F"><a href="#u80CC_u666F" class="headerlink" title="背景"></a>背景</h2><blockquote>
-<ul>
-<li>开发人员在开发过程中，ide 控制台经常不能完整的打印出网络请求的数据；</li>
-<li>app应用上线后，如果调试bug，需要后端开发哥哥登录服务器的查看log日志;</li>
-</ul>
-</blockquote>
-<h2 id="u6293_u5305_u4E4B_u8DEF"><a href="#u6293_u5305_u4E4B_u8DEF" class="headerlink" title="抓包之路"></a>抓包之路</h2><h3 id="Fiddler_u914D_u7F6E"><a href="#Fiddler_u914D_u7F6E" class="headerlink" title="Fiddler配置"></a>Fiddler配置</h3><blockquote>
-<ol>
-<li>安装Fiddler软件</li>
-<li>点击: Tools -&gt; Options,  在Options 对话框上点击Advanced tab - &gt; network tab -&gt; setting.如下图:<br><br><img src="http://i.imgur.com/Xj0akYq.png" alt=""><br></li>
-<li>代理端配置（不建议修改）。fiddler默认端口为8888，地址为127.0.0.1。为了省事不建议修改。如下图:<br><br><img src="http://i.imgur.com/meiFObw.png" alt=""></li>
-</ol>
-</blockquote>
-<h3 id="u521B_u5EFA_u70ED_u70B9"><a href="#u521B_u5EFA_u70ED_u70B9" class="headerlink" title="创建热点"></a>创建热点</h3><h4 id="360_u514D_u8D39_u70ED_u70B9"><a href="#360_u514D_u8D39_u70ED_u70B9" class="headerlink" title="360免费热点"></a>360免费热点</h4><blockquote>
-<ol>
-<li>在360安全卫士中安装360免费wifi  </li>
-<li>运行360免费wifi，并设置对应的密码，如下图:<br><br><img src="http://i.imgur.com/5rGWhzH.png" alt=""></li>
-</ol>
-</blockquote>
-<hr>
-<blockquote>
-<p>说明<br><br>场景1 公司无线网络环境<br><br>　　　由于公司无线网络环境会链接很多个终端设备，自己创建的热点网速会有影响(不建议)<br><br>场景2 公司有线网络<br><br>　　　公司有线网络获一般直接和交换机连接，网速给力，自己再抓包过程中也会得新应手(推荐)<br>  </p>
-</blockquote>
-<h3 id="u624B_u673A_u7AEF_u914D_u7F6E"><a href="#u624B_u673A_u7AEF_u914D_u7F6E" class="headerlink" title="手机端配置"></a>手机端配置</h3><p>准备：</p>
-<blockquote>
-<ul>
-<li>搜索wifi，找到并连接上自己刚刚创建的热点，并测试是否连接成功</li>
-<li>产看本机ip地址<br><br>①共享本地无线网络，查看无线网卡ip<br><br>②共享本地有线网络，查看有线网卡ip<br><br>具体如下图：<br><br><img src="http://i.imgur.com/ZO6TFy8.png" alt=""><br><br><img src="http://i.imgur.com/tG7BP6q.png" alt=""><br>特别注意，一定要对应ip，否则会有问题  </li>
-</ul>
-</blockquote>
-<h4 id="ios__u624B_u673A_u914D_u7F6E"><a href="#ios__u624B_u673A_u914D_u7F6E" class="headerlink" title="ios 手机配置"></a>ios 手机配置</h4><blockquote>
-<ol>
-<li>设置手机端的代理服务器（输入在第2部找到的ip地址，端口号位8888）<br><br><img src="http://i.imgur.com/VTwUKZj.png" alt="">  </li>
-<li>进入fiddler 查看是否可以抓取到手机应用上的流量包<br>  </li>
-</ol>
-</blockquote>
-<h4 id="android__u624B_u673A_u914D_u7F6E"><a href="#android__u624B_u673A_u914D_u7F6E" class="headerlink" title="android 手机配置"></a>android 手机配置</h4><p>注：android手机各异，只展示红米配置,其它手机终端百度可以搞定<br>  </p>
-<blockquote>
-<ol>
-<li>设置手机端的代理服务器（输入在第2部找到的ip地址，端口号位8888）<br><br><img src="http://i.imgur.com/KVTeata.png" alt="">  </li>
-<li>进入fiddler 查看是否可以抓取到手机应用上的流量包<br>  </li>
-</ol>
-<hr>
-<p>无法连接可能问题：<br><br>　　①fiddler 没有启动<br><br>　　②手机端端口号忘记配置<br><br>　　③ip地址填写错误<br><br>fiddler 抓取不到包:<br><br>　　①客户端没有配置代理，重新检查以上步骤<br>  </p>
-</blockquote>
-<h3 id="Fiddler__u67E5_u770B"><a href="#Fiddler__u67E5_u770B" class="headerlink" title="Fiddler 查看"></a>Fiddler 查看</h3><blockquote>
-<ol>
-<li>清空工作空间，操作客户端应用程序抓取应用包    </li>
-<li>数据解析<br><img src="http://i.imgur.com/fh2ygOK.png" alt=""><br><br>webforms　　查看请求提交的参数，以表单的形式展示，特别方便<br><br>JSON　　　 查看请求提交的参数，以表单的形式展示，特别方便<br>    </li>
-</ol>
-</blockquote>
-<h2 id="u6269_u5C55_u9605_u8BFB"><a href="#u6269_u5C55_u9605_u8BFB" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
-<li><a href="http://kb.cnblogs.com/page/130367/" target="_blank" rel="external">Fiddler 教程</a>  </li>
-</ul>
-
-          
+          <p>h5 提高篇，分享代码结构和debug 时的一些技巧</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/08/h5share/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -472,7 +421,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy;  2016 -2026 - 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>
