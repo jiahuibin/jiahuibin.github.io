@@ -87,7 +87,7 @@ apache（部署静态服务）
 switchHost（切换本地 host）
 
 基础优化公共js　　1. 不同的公司">
-<meta property="og:updated_time" content="2016-01-13T07:34:53.068Z">
+<meta property="og:updated_time" content="2016-01-14T02:20:19.021Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="H5技术总结（Fiddler）">
 <meta name="twitter:description" content="前言
@@ -458,12 +458,14 @@ reqApi2: function () {
 <blockquote>
 <p>  ①event.stopPropagation();  只阻止了冒泡事件， 默认行为没有阻止<br><br>  ②event.preventDefault(); 只阻止了默认事件，冒泡事件没有阻止<br><br>   ③return false; 冒泡事件和默认事件都阻止<br></p>
 </blockquote>
-<p>终结解决方法：<br>   定位重复执行事件</p>
+<p>终结解决方法（以上方法无法解决时）：<br>   debug 调试，对event的类名进行对比，执行对应逻辑</p>
+<p>产生以上问题的原因是，该区域内绑定的事件太多，一般超过3个事件。</p>
 <h2 id="debug__u6280_u5DE7"><a href="#debug__u6280_u5DE7" class="headerlink" title="debug 技巧"></a>debug 技巧</h2><h2 id="u63A8_u8350_u9605_u8BFB"><a href="#u63A8_u8350_u9605_u8BFB" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><ul>
 <li><a href="http://www.haorooms.com/post/jquery_dmgf_zjsj" target="_blank" rel="external">JQUERY 开发规范</a></li>
 <li><a href="http://kb.cnblogs.com/page/130367/" target="_blank" rel="external">Fiddler 教程</a></li>
 <li><a href="http://www.youmeek.com/" target="_blank" rel="external">idea 使用教程</a></li>
 </ul>
+<p>103.245.222.133</p>
 
       
     </div>
