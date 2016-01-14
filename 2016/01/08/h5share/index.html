@@ -1,0 +1,902 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="h5 提高篇，分享代码结构和debug 时的一些技巧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="H5技术总结（Fiddler）">
+<meta property="og:url" content="http://huihaizhe.com/2016/01/08/h5share/index.html">
+<meta property="og:site_name" content="不积跬步无以至千里,不积小流无以成江河">
+<meta property="og:description" content="h5 提高篇，分享代码结构和debug 时的一些技巧">
+<meta property="og:updated_time" content="2016-01-14T14:57:13.348Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="H5技术总结（Fiddler）">
+<meta name="twitter:description" content="h5 提高篇，分享代码结构和debug 时的一些技巧">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> H5技术总结（Fiddler） | 不积跬步无以至千里,不积小流无以成江河 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?e86d7695307cb9e0522727e15c1bc1b8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">不积跬步无以至千里,不积小流无以成江河</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-h5 " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                H5技术总结（Fiddler）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-08T11:46:48+08:00" content="2016-01-08">
+              2016-01-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/08/h5share/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/08/h5share/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>h5 提高篇，分享代码结构和debug 时的一些技巧</p>
+<a id="more"></a>
+<h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>我们写的代码要对得起自己。<br></li>
+<li>在这里分享一些h5项目开发和设计的技巧，希望对大家有帮助。知识点没有太深入，偏重于设计大的结构。有问题可以直接google。<br></li>
+<li>汇海期待您的加入！</li>
+</ul>
+<h2 id="u5175_u5668_u63A8_u8350"><a href="#u5175_u5668_u63A8_u8350" class="headerlink" title="兵器推荐"></a>兵器推荐</h2><ul>
+<li>idea（js 开发）</li>
+<li>fiddler（抓包）</li>
+<li>google chrome(debug 方便)</li>
+<li>apache（部署静态服务）</li>
+<li>switchHost（切换本地 host）</li>
+</ul>
+<h2 id="u57FA_u7840_u4F18_u5316"><a href="#u57FA_u7840_u4F18_u5316" class="headerlink" title="基础优化"></a>基础优化</h2><h3 id="u516C_u5171js"><a href="#u516C_u5171js" class="headerlink" title="公共js"></a>公共js</h3><p>　　1. 不同的公司都有自己的公共类库，经常存在线上环境和至少一套线下环境，如果没有一个公共的开关来设置域名的切换，每次在上线的时候，如果逐个进行替换，会相当麻烦。<br><br>　　2. ajax 封装(略)<br><br>　　以下代码增加了开关，和ajax的封装，建议加入到公共js。</p>
+<pre><code>var HHZ_COMMON = {
+isDebug: true,
+//获取域名
+getHost: function () {
+    var result;
+    if (HHZ_COMMON.isDebug) {
+        result = &quot;http://test.huihaizhe.com/&quot;;//测试地址
+    } else {
+        result = &quot;http://huihaizhe.com/&quot;;//正式地址
+    }
+
+    return result;
+},
+//判断参数是否为null
+isEmpty: function (text) {
+    if (text == null || text == undefined || text == &quot;undefined&quot; || text === &quot;&quot;) {
+        return true;
+    } else {
+        return false;
+    }
+},
+//判断参数不为null
+isNotEmpty: function (text) {
+    return !this.isEmpty(text);
+},
+//获取URL参数函数
+getUrlParam: function (name) {
+    var reg = new RegExp(&quot;(^|&amp;)&quot; + name + &quot;=([^&amp;]*)(&amp;|$)&quot;);
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+        r = decodeURIComponent(unescape(r[2]));
+        return this.stripscript(r);
+    } else {
+        return null;
+    }
+},
+stripscript: function (s) {
+    var pattern = new RegExp(&quot;[`~!@#$^&amp;*()=|{}&apos;;&apos;,\\[\\].&lt;&gt;/?~！@#￥……&amp;*（）—|{}【】‘；：”“&apos;。，、？]&quot;);
+    var rs = &quot;&quot;;
+    for (var i = 0; i &lt; s.length; i++) {
+        rs = rs + s.substr(i, 1).replace(pattern, &apos;&apos;);
+    }
+    return rs;
+},
+//对ajax的封装
+load: function (options) {
+    //定义默认值
+    this.defaultOpt = {
+        type: &apos;GET&apos;,
+        url: &quot;&quot;,//必传
+        data: {},//key-value
+        jsonpCallback: &apos;callback&apos;,
+        dataType: &apos;jsonp&apos;,//jsonp json
+        msgTitle: &quot;ajax 请求&quot;,//debug 时可以设置
+        cache: false,//默认值true, dataType是&apos;script&apos;或&apos;jsonp&apos;时为false，可根据需要配置
+        success: function (data) {
+        },
+        error: function (data) {
+        },
+    };
+    var opt = $.extend(this.defaultOpt, options);
+    /*对网络异常将来可以统一处理*/
+    $.ajax({
+        type: opt.type,
+        url: opt.url,
+        jsonpCallback: opt.jsonpCallback,
+        dataType: opt.dataType,
+        data: opt.data,
+        error: function (data) {
+            opt.error(data);
+        },
+        success: function (data) {
+            opt.success(data);
+        }
+    });
+},
+</code></pre><h3 id="h5_u9875_u9762_u7ED3_u6784"><a href="#h5_u9875_u9762_u7ED3_u6784" class="headerlink" title="h5页面结构"></a>h5页面结构</h3><ol>
+<li>head 标签内完成对公共js的引入</li>
+<li>h5页面底部完成对本页面js的引入</li>
+</ol>
+<p>注：如果受够了产品经常反复修改，请不要在h5页面内写入过多的js代码(尽量只写一行引入代码)</p>
+<h3 id="js__u4EE3_u7801_u7ED3_u6784"><a href="#js__u4EE3_u7801_u7ED3_u6784" class="headerlink" title="js 代码结构"></a>js 代码结构</h3><pre><code>&apos;/**
+     * 改页面唯一入口
+ */
+var initConfig = {
+//api 接口
+hhzTestApi: &quot;我的测试路径&quot;,//获取类目信息
+init: function () {
+    mytest.addClick();//注册所有点击事件
+    //添加更多模块
+},
+};
+/**
+ *  1. addClick 所有的点击事件统一在这里进行绑定（不建议使用匿名类）&lt;br/&gt;
+ *  2. reqApi()   定义函数 ..&lt;br/&gt;
+ *  注： 每个函数只做一件事情，代码结构清晰
+ */
+var mytest = {
+/*所有的点击事件入口*/
+addClick: function () {
+    //ajax 请求
+    $(&quot;.postAjax&quot;).unbind(&quot;click&quot;).on(&quot;click&quot;, mytest.reqApi());
+},
+reqApi: function () {//获取用户信息
+    HHZ_COMMON.load({
+        url: HHZ_COMMON.getHost() + initConfig.hhz,
+        type: &apos;get&apos;,
+        cache: false,
+        data: {
+            //请求参数
+        },
+        dataType: &apos;jsonp&apos;,
+        jsonpCallback: &apos;mytest&apos;,
+        success: function (res) {
+            alert(&quot;网络请求成功&quot;);
+        },
+        error: function (res) {
+            alert(&quot;网络请求失败&quot;);
+        }
+    });
+},
+reqApi2: function () {
+    //点击某某
+}
+}
+</code></pre><p>　　发注:如果页面存在多个状态建议采用工厂模式对页面状态进行切换</p>
+<h2 id="u5E38_u89C1_u95EE_u9898"><a href="#u5E38_u89C1_u95EE_u9898" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="u5F00_u53D1_u524D_u53EF_u4EE5_u907F_u514D"><a href="#u5F00_u53D1_u524D_u53EF_u4EE5_u907F_u514D" class="headerlink" title="开发前可以避免"></a>开发前可以避免</h3><ul>
+<li><p>杜绝为了完成工作而工作，拿到重构稿是认真分析页面结构。</p>
+<ol>
+<li><p>提示框未展示问题<br><br>产生该问题的原因是,提示框已经弹出，但是被页面上其它的遮罩层挡住。<br><br>在获取到重构稿的时候，优先查看查看遮罩层的z-index属性值，如果未设置建议设置一个很大的值。</p>
+</li>
+<li><p>页面结构分析<br><br>①了解h5页面有多少给状态页面<br><br>②了解h5页面有多少个页面是全屏展示，多少个页面非全屏展示<br></p>
+</li>
+<li><p>可变高度和屏幕高度（可以解决大部分疑难问题）</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="u5F00_u53D1_u8FDB_u884C_u4E2D_u95EE_u9898"><a href="#u5F00_u53D1_u8FDB_u884C_u4E2D_u95EE_u9898" class="headerlink" title="开发进行中问题"></a>开发进行中问题</h3><p>　　1. h5页面唤起系统键盘切换不流畅问题<br><br>　　　产生该问题的原因是，iphone input和textarea 焦点失去时和系统键盘收起的响应时间问题。具体解决方法可以参考 <a href="http://www.alixixi.com/web/a/2014042893111.shtml" target="_blank" rel="external">ios键盘收起</a>。（增加了延迟完美解决）<br></p>
+<p>　　2. 冒泡问题<br><br>　　JQuery中阻止冒泡常用到的有以下3个方法：</p>
+<blockquote>
+<p>  ①event.stopPropagation();  只阻止了冒泡事件， 默认行为没有阻止<br><br>  ②event.preventDefault(); 只阻止了默认事件，冒泡事件没有阻止<br><br>   ③return false; 冒泡事件和默认事件都阻止<br></p>
+</blockquote>
+<p>终结解决方法（以上方法无法解决时）：<br>   debug 调试，对event的类名进行对比，之后执行对应逻辑</p>
+<p>产生以上问题的原因是，该区域内绑定的事件太多，一般超过3个事件。</p>
+<h2 id="u6280_u5DE7_u7BC7"><a href="#u6280_u5DE7_u7BC7" class="headerlink" title="技巧篇"></a>技巧篇</h2><h3 id="u7075_u6D3B_u4F7F_u7528_u63A7_u5236_u53F0"><a href="#u7075_u6D3B_u4F7F_u7528_u63A7_u5236_u53F0" class="headerlink" title="灵活使用控制台"></a>灵活使用控制台</h3><ol>
+<li>直接通过函数名称，调用方法</li>
+<li>使用console.log()打印日志</li>
+<li>灵活使用断点</li>
+</ol>
+<h3 id="u4F7F_u7528_u6293_u5305_u5DE5_u5177"><a href="#u4F7F_u7528_u6293_u5305_u5DE5_u5177" class="headerlink" title="使用抓包工具"></a>使用抓包工具</h3><p>　　参照 <a href="http://huihaizhe.com/2016/01/08/android%20%E6%8A%93%E5%8C%85/">Fiddler 抓包篇</a></p>
+<h2 id="u63A8_u8350_u9605_u8BFB"><a href="#u63A8_u8350_u9605_u8BFB" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><ul>
+<li><a href="http://www.haorooms.com/post/jquery_dmgf_zjsj" target="_blank" rel="external">JQUERY 开发规范</a></li>
+<li><a href="http://kb.cnblogs.com/page/130367/" target="_blank" rel="external">Fiddler 教程</a></li>
+<li><a href="http://www.youmeek.com/" target="_blank" rel="external">idea 使用教程</a></li>
+</ul>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/08/capture/" rel="next" title="移动开发利剑之抓包工具（Fiddler）">
+                <i class="fa fa-chevron-left"></i> 移动开发利剑之抓包工具（Fiddler）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/08/h5share/"
+           data-title="H5技术总结（Fiddler）" data-url="http://huihaizhe.com/2016/01/08/h5share/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/myicon.jpg"
+               alt="zeus_jhb" />
+          <p class="site-author-name" itemprop="name">zeus_jhb</p>
+          <p class="site-description motion-element" itemprop="description">我们都是it行业的一滴水，滴水穿石，汇流成海，用我们的智慧打造自己的互联网时代</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jiahuibin" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/jia-hui-bin-21" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> zhihu
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u524D_u8A00"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5175_u5668_u63A8_u8350"><span class="nav-number">2.</span> <span class="nav-text">兵器推荐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u57FA_u7840_u4F18_u5316"><span class="nav-number">3.</span> <span class="nav-text">基础优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u516C_u5171js"><span class="nav-number">3.1.</span> <span class="nav-text">公共js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#h5_u9875_u9762_u7ED3_u6784"><span class="nav-number">3.2.</span> <span class="nav-text">h5页面结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js__u4EE3_u7801_u7ED3_u6784"><span class="nav-number">3.3.</span> <span class="nav-text">js 代码结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5E38_u89C1_u95EE_u9898"><span class="nav-number">4.</span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5F00_u53D1_u524D_u53EF_u4EE5_u907F_u514D"><span class="nav-number">4.1.</span> <span class="nav-text">开发前可以避免</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5F00_u53D1_u8FDB_u884C_u4E2D_u95EE_u9898"><span class="nav-number">4.2.</span> <span class="nav-text">开发进行中问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u6280_u5DE7_u7BC7"><span class="nav-number">5.</span> <span class="nav-text">技巧篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u7075_u6D3B_u4F7F_u7528_u63A7_u5236_u53F0"><span class="nav-number">5.1.</span> <span class="nav-text">灵活使用控制台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4F7F_u7528_u6293_u5305_u5DE5_u5177"><span class="nav-number">5.2.</span> <span class="nav-text">使用抓包工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u63A8_u8350_u9605_u8BFB"><span class="nav-number">6.</span> <span class="nav-text">推荐阅读</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zeus_jhb</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"huihaizhe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+
+</body>
+</html>
